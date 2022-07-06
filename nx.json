@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "npmScope": "pricing-intel-ui",
+  "npmScope": "pricing-intel-ui-poc",
   "affected": {
     "defaultBase": "main"
   },
@@ -15,20 +15,30 @@
     "default": {
       "runner": "nx/tasks-runners/default",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ]
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
       }
     }
   },
   "targetDefaults": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ]
+      "dependsOn": ["^build"]
     }
-  }
+  },
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "less",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "less"
+      },
+      "library": {
+        "style": "less",
+        "linter": "eslint"
+      }
+    }
+  },
+  "defaultProject": "host"
 }
