@@ -1,4 +1,7 @@
 {
   "name": "@vipin-sharma-numerator/pricing-intel-ui-poc",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "repository": {
+    "url": "git://github.com:vipin-sharma-numerator/pricing-intel-ui-poc.git"
+  }
 }
