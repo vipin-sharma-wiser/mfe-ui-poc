@@ -1,3 +1,1 @@
-module.exports = function() {
-    console.log("Calling nx lib published package")
-  }
+export * from './lib/mylib';
