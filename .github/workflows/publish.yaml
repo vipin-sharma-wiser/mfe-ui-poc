@@ -67,5 +67,8 @@ jobs:
       
       - name: publish
         run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.node_auth_token }}
+        with:
+          org_name: vipin-sharma-wiser
+          auth_token: ${{ secrets.node_auth_token }}
+          env:
+            AUTH_TOKEN: ${{ secrets.node_auth_token }}
