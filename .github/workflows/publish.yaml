@@ -19,7 +19,7 @@ on:
 
 env:
   # Required to integrate private organizational github packages
-  NODE_AUTH_TOKEN: ${{ secrets.node_auth_token }}
+  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   build-lib:
@@ -51,7 +51,7 @@ jobs:
       - name: Install dependencies
         run: yarn
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.node_auth_token }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # - name: Format
       #   run: yarn nx format:check ${{ inputs.ui_module }}
@@ -65,7 +65,7 @@ jobs:
       - uses: ferluisxd/create-npmrc@3
         with:
           org_name: vipin-sharma-wiser
-          auth_token: ${{ secrets.node_auth_token }}
+          auth_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Copy npmrc file to build path
         run: cp .npmrc dist/libs/${{ inputs.lib_module }}
@@ -76,4 +76,4 @@ jobs:
       - name: publish
         run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.node_auth_token }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
