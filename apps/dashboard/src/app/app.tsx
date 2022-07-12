@@ -1,9 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import styles from './app.module.less';
-import NxWelcome from './nx-welcome';
-import greeting from '@vipin-sharma-numerator/pricing-intel-ui-poc';
+// import {Mylib} from '@vipin-sharma-wiser/mylib';
+// import {Mylib2} from '@vipin-sharma-wiser/mylib_2';
 
-greeting()
+// Mylib({})
+// Mylib2({})
 
 export function App() {
   return (

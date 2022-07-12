@@ -8,6 +8,7 @@
     "home-e2e": "apps/home-e2e",
     "host": "apps/host",
     "host-e2e": "apps/host-e2e",
-    "mylib": "libs/mylib"
+    "mylib": "libs/mylib",
+    "mylib-2": "libs/mylib-2"
   }
 }

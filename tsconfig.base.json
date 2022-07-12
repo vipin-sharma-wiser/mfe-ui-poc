@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@vipin-sharma-numerator/pricing-intel-ui-poc": [
+      "@vipin-sharma-wiser/mylib_2": ["libs/mylib-2/src/index.ts"],
+      "@vipin-sharma-wiser/mylib": [
         "libs/mylib/src/index.ts"
       ]
     }
