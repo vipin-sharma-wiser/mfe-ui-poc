@@ -66,6 +66,8 @@ jobs:
         with:
           org_name: vipin-sharma-wiser
           auth_token: ${{ secrets.GITHUB_TOKEN }}
+          env:
+            AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Copy npmrc file to build path
         run: cp .npmrc dist/libs/${{ inputs.lib_module }}
