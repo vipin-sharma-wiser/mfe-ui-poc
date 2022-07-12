@@ -70,9 +70,6 @@ jobs:
           org_name: vipin-sharma-wiser
           auth_token: ${{ secrets.node_auth_token }}
 
-      - name: Cat npmrc
-        run: cat ~/.npmrc
-
       - name: publish
         run: npm publish
         env:
