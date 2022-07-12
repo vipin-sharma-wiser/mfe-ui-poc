@@ -33,11 +33,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v1
+      - uses: ferluisxd/create-npmrc@3
         with:
-          node-version: '16'
-          registry-url: https://npm.pkg.github.com/
-          scope: '@vipin-sharma-wiser'
           org_name: vipin-sharma-wiser
           auth_token: ${{ secrets.GITHUB_TOKEN }}
 
