@@ -3,5 +3,8 @@
   "version": "0.0.1",
   "repository": {
     "url": "git://github.com:vipin-sharma-wiser/mfe-ui-poc.git"
-  }
+  },
+  "publishConfig": {
+	  "registry": "https://npm.pkg.github.com/"
+  } 
 }
