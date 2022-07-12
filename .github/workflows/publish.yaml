@@ -69,8 +69,6 @@ jobs:
         with:
           org_name: lig0
           auth_token: ${{ secrets.node_auth_token }}
-          env:
-            AUTH_TOKEN: ${{ secrets.node_auth_token }}
 
       - name: publish
         run: npm publish
