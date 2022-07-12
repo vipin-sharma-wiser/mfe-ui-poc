@@ -28,7 +28,7 @@ jobs:
   lib1-build-package:
     name: Lib1 Build and Publish
     needs: ['set-env-vars']
-    uses: ./.github/workflows/publish.yml
+    uses: ./.github/workflows/publish.yaml
     with:
       lib_module: lib1
       nx_configuration: ${{ needs.set-env-vars.outputs.nx-configuration }}
