@@ -38,6 +38,8 @@ jobs:
           node-version: '16'
           registry-url: https://npm.pkg.github.com/
           scope: '@vipin-sharma-wiser'
+          org_name: vipin-sharma-wiser
+          auth_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install NX
         uses: nrwl/nx-set-shas@v2
@@ -62,10 +64,10 @@ jobs:
       - name: Build
         run: yarn nx build ${{ inputs.lib_module }} --configuration=${{ inputs.nx_configuration }} --skip-nx-cache
 
-      - uses: ferluisxd/create-npmrc@3
-        with:
-          org_name: vipin-sharma-wiser
-          auth_token: ${{ secrets.GITHUB_TOKEN }}
+      # - uses: ferluisxd/create-npmrc@3
+      #   with:
+      #     org_name: vipin-sharma-wiser
+      #     auth_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Copy npmrc file to build path
         run: cp .npmrc dist/libs/${{ inputs.lib_module }}
