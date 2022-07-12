@@ -6,10 +6,10 @@ on:
     #   - 'v*-lib1-prod*'
     branches:
       - main
-    paths:
-      - 'libs/lib1/**'
-      - '.github/workflows/lib1-publish.yaml'
-      - '.github/workflows/publish.yaml'
+    # paths:
+    #   - 'libs/lib1/**'
+    #   - '.github/workflows/lib1-publish.yaml'
+
 jobs:
   set-env-vars:
     name: Set Env Vars
