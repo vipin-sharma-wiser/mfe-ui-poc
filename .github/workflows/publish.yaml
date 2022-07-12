@@ -36,7 +36,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '14'
-          registry-url: https://npm.pkg.github.com/
+          registry-url: https://npm.pkg.github.com
           scope: '@vipin-sharma-wiser'
 
       - name: Install NX
@@ -83,9 +83,6 @@ jobs:
 
       # - name: Navigate to build path
       #   run: cd dist/libs/${{ inputs.lib_module }}
-
-      - name: Add user
-        run: npm adduser --registry=https://npm.pkg.github.com --scope=@vipin-sharma-wiser
 
       - name: publish
         run: npm publish
