@@ -8,8 +8,8 @@ on:
       - main
     paths:
       - 'libs/lib1/**'
-      - '.github/workflows/lib1-publish.yml'
-
+      - '.github/workflows/lib1-publish.yaml'
+      - '.github/workflows/publish.yaml'
 jobs:
   set-env-vars:
     name: Set Env Vars
