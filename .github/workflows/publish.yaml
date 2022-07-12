@@ -67,7 +67,7 @@ jobs:
       
       - uses: ferluisxd/create-npmrc@3
         with:
-          org_name: lig0
+          org_name: vipin-sharma-wiser/mfe-ui-poc
           auth_token: ${{ secrets.node_auth_token }}
 
       - name: publish
