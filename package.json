@@ -9,6 +9,7 @@
   },
   "private": true,
   "dependencies": {
+    "@vipin-sharma-wiser/lib1": "0.0.1",
     "antd": "^4.20.7",
     "axios": "^0.21.1",
     "core-js": "^3.22.7",

@@ -15,10 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@vipin-sharma-wiser/mylib_2": ["libs/mylib-2/src/index.ts"],
-      "@vipin-sharma-wiser/mylib": [
-        "libs/mylib/src/index.ts"
-      ]
+      "@vipin-sharma-wiser/lib1": ["libs/lib1/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,10 +1,10 @@
 /* eslint-disable */
 export default {
-  displayName: 'mylib-2',
+  displayName: 'lib1',
   preset: '../../jest.preset.js',
   transform: {
     '^.+\\.[tj]sx?$': 'babel-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../coverage/libs/mylib-2',
+  coverageDirectory: '../../coverage/libs/lib1',
 };

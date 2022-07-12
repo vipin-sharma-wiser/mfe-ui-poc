@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import Mylib2 from './mylib-2';
+import Lib1 from './lib1';
 
-describe('Mylib2', () => {
+describe('Lib1', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Mylib2 />);
+    const { baseElement } = render(<Lib1 />);
     expect(baseElement).toBeTruthy();
   });
 });
