@@ -50,6 +50,8 @@ jobs:
 
       - name: Install dependencies
         run: yarn
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.node_auth_token }}
 
       # - name: Format
       #   run: yarn nx format:check ${{ inputs.ui_module }}
