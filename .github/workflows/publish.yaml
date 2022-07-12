@@ -19,7 +19,7 @@ on:
 
 env:
   # Required to integrate private organizational github packages
-  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  NODE_AUTH_TOKEN: ${{ secrets.node_auth_token }}
 
 jobs:
   build-lib:
@@ -51,7 +51,7 @@ jobs:
       - name: Install dependencies
         run: yarn
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.node_auth_token }}
 
       # - name: Format
       #   run: yarn nx format:check ${{ inputs.ui_module }}
@@ -75,7 +75,7 @@ jobs:
       - name: Ensure access
         run: npm whoami --registry https://npm.pkg.github.com/
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.node_auth_token }}
 
       - name: Copy npmrc file to build path
         run: cp /home/runner/work/_temp/.npmrc dist/libs/${{ inputs.lib_module }}
@@ -86,4 +86,4 @@ jobs:
       - name: publish
         run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.node_auth_token }}
