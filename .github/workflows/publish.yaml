@@ -20,6 +20,7 @@ on:
 env:
   # Required to integrate private organizational github packages
   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   build-lib:
