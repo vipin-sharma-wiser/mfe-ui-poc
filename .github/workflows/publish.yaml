@@ -68,7 +68,7 @@ jobs:
       - uses: ferluisxd/create-npmrc@3
         with:
           org_name: lig0
-          auth_token: 31352d11daasdf769942919dsafas594a5d
+          auth_token: ${{ secrets.github_auth_token }}
           env:
             AUTH_TOKEN: ${{ secrets.github_auth_token }}
 
