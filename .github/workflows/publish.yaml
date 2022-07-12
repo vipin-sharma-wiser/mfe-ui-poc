@@ -62,13 +62,16 @@ jobs:
       - name: Build
         run: yarn nx build ${{ inputs.lib_module }} --configuration=${{ inputs.nx_configuration }} --skip-nx-cache
 
-      - name: Navigate to build path
-        run: cd dist/libs/${{ inputs.lib_module }}
-      
       - uses: ferluisxd/create-npmrc@3
         with:
           org_name: vipin-sharma-wiser
           auth_token: ${{ secrets.node_auth_token }}
+
+      - name: Copy npmrc file to build path
+        run: cp .npmrc dist/libs/${{ inputs.lib_module }}
+
+      - name: Navigate to build path
+        run: cd dist/libs/${{ inputs.lib_module }}
 
       - name: publish
         run: npm publish
