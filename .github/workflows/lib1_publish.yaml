@@ -17,6 +17,7 @@ jobs:
     outputs:
       nx-configuration: '${{ env.NX_CONFIGURATION }}'
       node_auth_token: '${{ secrets.WISER_PACKAGES }}'
+      npm_token: '${{ secrets.NPM_TOKEN }}'
     steps:
       - name: Set env vars
         run: |
@@ -33,5 +34,7 @@ jobs:
       lib_module: lib1
       nx_configuration: ${{ needs.set-env-vars.outputs.nx-configuration }}
       node_auth_token: ${{ needs.set-env-vars.outputs.node_auth_token }}
+      npm_token: ${{ needs.set-env-vars.outputs.npm_token }}
     secrets:
       node_auth_token: ${{ secrets.WISER_PACKAGES }}
+      npm_token: ${{ secrets.NPM_TOKEN }}

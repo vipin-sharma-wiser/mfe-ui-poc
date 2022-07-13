@@ -20,6 +20,7 @@ on:
 env:
   # Required to integrate private organizational github packages
   NODE_AUTH_TOKEN: ${{ secrets.node_auth_token }}
+  NPM_TOKEN: ${{ secrets.npm_token }}
 
 jobs:
   build-lib:
@@ -83,6 +84,9 @@ jobs:
 
       - name: Navigate to build path
         run: cd dist/libs/${{ inputs.lib_module }}
+
+      - name: List the files
+        run: ls -a
 
       - name: publish
         run: npm publish
