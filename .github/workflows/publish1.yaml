@@ -48,6 +48,12 @@ jobs:
 
       - run: yarn nx build lib1
 
+      - name: Navigate to build path
+        run: cd dist/libs/lib1
+
+      - name: List the files
+        run: ls -a
+
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
