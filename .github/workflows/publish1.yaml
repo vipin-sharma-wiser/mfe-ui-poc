@@ -49,7 +49,7 @@ jobs:
       - run: yarn nx build lib1
 
       - name: Navigate to build path
-        run: cd dist/libs/lib1
+        run: cd ./dist/libs/lib1
 
       - name: List the files
         run: ls -a
