@@ -46,16 +46,15 @@ jobs:
 
       - name: Publish Package
         working-directory: dist/libs/lib1
-        run: |
-          npm version 1.2.0
-          npm publish
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: "Automated Package Version Bump"
-        uses: "taichi/actions-package-update@master"
-        with:
-          args: upgrade --latest
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          PACKAGEJSON_DIR:  'libs/lib1'
+      # - name: "Automated Package Version Bump"
+      #   uses: "phips28/gh-action-bump-version@master"
+      #   with:
+      #     target-branch: 'dev'
+      #     commit-message: 'CI: Bump version'
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      #     PACKAGEJSON_DIR:  'libs/lib1'
