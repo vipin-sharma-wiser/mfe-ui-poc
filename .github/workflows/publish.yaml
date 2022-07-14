@@ -1,93 +1,60 @@
-# name: Base Reusable Build & Package Lib
+name: Publish
 
-# # Reusing github actions workflows: https://docs.github.com/en/actions/using-workflows/reusing-workflows
-# on:
-#   workflow_call:
-#     inputs:
-#       lib_module:
-#         required: true
-#         type: string
-#       nx_configuration:
-#         required: true
-#         type: string
-#       node_auth_token:
-#         required: true
-#         type: string
-#     secrets:
-#       node_auth_token:
-#         required: true
+on:
+  push:
+    branches:
+      - main
 
-# env:
-#   # Required to integrate private organizational github packages
-#   NODE_AUTH_TOKEN: ${{ secrets.node_auth_token }}
+jobs:
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '16'
+          registry-url: https://npm.pkg.github.com/
+          scope: '@vipin-sharma-wiser'
 
-# jobs:
-#   build-lib:
-#     name: Build and Publish
-#     runs-on: ubuntu-latest
-#     # outputs:
-#     #   tag: '${{ env.TAG }}'
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@v2
-#         with:
-#           fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
-#       - uses: actions/setup-node@v1
-#         with:
-#           node-version: '16'
-#           registry-url: https://npm.pkg.github.com/
-#           scope: '@vipin-sharma-wiser'
+      - name: Install NX
+        uses: nrwl/nx-set-shas@v2
 
-#       - name: Install NX
-#         uses: nrwl/nx-set-shas@v2
+      - name: Install dependencies
+        run: yarn
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-#       - name: Cache Deps
-#         uses: actions/cache@v2
-#         with:
-#           path: '**/node_modules'
-#           key: ${{ runner.os }}-${{ inputs.lib_module }}-${{ inputs.nx_configuration }}-build-lib-${{ hashFiles('./yarn.lock') }}
+      - run: yarn
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-#       - name: Install dependencies
-#         run: yarn
-#         env:
-#           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: yarn nx build lib1
 
-#       # - name: Format
-#       #   run: yarn nx format:check ${{ inputs.ui_module }}
+      - name: Ensure access
+        run: npm whoami --registry https://npm.pkg.github.com/
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-#       # - name: Module Lint
-#       #   run: yarn nx lint ${{ inputs.ui_module }}
+      - name: Copy .npmrc file to publishable lib
+        run: |
+          cp .npmrc dist/libs/lib1
 
-#       - name: Build
-#         run: yarn nx build ${{ inputs.lib_module }} --configuration=${{ inputs.nx_configuration }} --skip-nx-cache
+      - name: Publish Package
+        working-directory: dist/libs/lib1
+        run: |
+          npm version 0.0.2
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-#       # - uses: ferluisxd/create-npmrc@3
-#       #   with:
-#       #     org_name: vipin-sharma-wiser
-#       #     auth_token: ${{ secrets.node_auth_token }}
-
-#       - name: print .npmrc
-#         run: cat /home/runner/work/_temp/.npmrc
-
-#       - name: printenv
-#         run: printenv
-
-#       - name: Ensure access
-#         run: npm whoami --registry https://npm.pkg.github.com/
-#         env:
-#           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-#       # - name: Copy npmrc file to build path
-#       #   run: cp /home/runner/work/_temp/.npmrc dist/libs/${{ inputs.lib_module }}
-
-#       - name: Navigate to build path
-#         run: cd dist/libs/${{ inputs.lib_module }}
-
-#       - name: List the files
-#         run: ls -a
-
-#       - name: publish
-#         run: npm publish
-#         env:
-#           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: "Automated Version Bump"
+        working-directory: dist/libs/lib1
+        uses: "phips28/gh-action-bump-version@master"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          PACKAGEJSON_DIR:  'libs/lib1'
