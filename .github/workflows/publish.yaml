@@ -3,7 +3,7 @@ name: Publish
 on:
   push:
     branches:
-      - main
+      - dev
 
 jobs:
   publish:
@@ -47,13 +47,15 @@ jobs:
       - name: Publish Package
         working-directory: dist/libs/lib1
         run: |
-          npm version 0.0.2
+          npm version 1.0.0
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: "Automated Version Bump"
+      - name: "Automated Package Version Bump"
         uses: "phips28/gh-action-bump-version@master"
+        with:
+          tag-prefix: ''
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           PACKAGEJSON_DIR:  'libs/lib1'
