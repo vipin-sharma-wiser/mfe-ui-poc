@@ -1,10 +1,10 @@
 {
   "name": "@vipin-sharma-wiser/lib1",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "repository": {
     "url": "git://github.com:vipin-sharma-wiser/mfe-ui-poc.git"
   },
   "publishConfig": {
-	  "registry": "https://npm.pkg.github.com/"
-  } 
+    "registry": "https://npm.pkg.github.com/"
+  }
 }

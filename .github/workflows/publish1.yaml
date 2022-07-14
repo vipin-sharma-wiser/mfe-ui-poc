@@ -10,16 +10,16 @@ jobs:
     name: Publish
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
       - uses: actions/setup-node@v1
         with:
           node-version: '16'
           registry-url: https://npm.pkg.github.com/
           scope: '@vipin-sharma-wiser'
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Install NX
         uses: nrwl/nx-set-shas@v2
@@ -33,27 +33,29 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - uses: ferluisxd/create-npmrc@3
-        with:
-          org_name: vipin-sharma-wiser
-          auth_token: ${{ secrets.NPM_TOKEN }}
+      # - uses: ferluisxd/create-npmrc@3
+      #   with:
+      #     org_name: vipin-sharma-wiser
+      #     auth_token: ${{ secrets.NPM_TOKEN }}
 
-      - name: print .npmrc
-        run: cat /home/runner/work/_temp/.npmrc
+      # - name: print .npmrc
+      #   run: cat /home/runner/work/_temp/.npmrc
+
+      - run: yarn nx build lib1
 
       - name: Ensure access
         run: npm whoami --registry https://npm.pkg.github.com/
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - run: yarn nx build lib1
+      - name: Copy .npmrc file to publishable lib
+        run: |
+          cp .npmrc dist/libs/lib1
 
-      - name: Navigate to build path
-        run: cd ./dist/libs/lib1
-
-      - name: List the files
-        run: ls -a
-
-      - run: npm publish
+      - name: Publish Package
+        working-directory: dist/libs/lib1
+        run: |
+          npm version 0.0.1
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
