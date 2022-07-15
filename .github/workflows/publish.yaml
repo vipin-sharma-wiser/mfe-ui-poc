@@ -66,6 +66,12 @@ jobs:
       contents: read
 
     steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '16'
+          registry-url: https://npm.pkg.github.com/
+          scope: '@vipin-sharma-wiser'
+          
       - name: Set up actions/checkout@v2.4.2
         uses: actions/checkout@v2.4.2
 
