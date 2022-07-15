@@ -42,7 +42,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - run: yarn nx build:lib lib1 --configuration==qa --skip-nx-cache
+      - run: yarn nx build lib1 --configuration==qa --skip-nx-cache
 
       - name: Generate version TAG
         run: echo "TAG=$(git show -s --format=%cd --date=format:%Y%m%d%H%M%S)" >> $GITHUB_ENV
